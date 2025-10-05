@@ -1,5 +1,10 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
+API_AUDIENCE = os.environ.get("API_AUDIENCE")
+ALGORITHMS = [os.environ.get("ALGORITHMS", "RS256")]
 
 app = FastAPI()
 
