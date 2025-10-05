@@ -14,21 +14,26 @@ async function configureClient() {
 }
 
 function render() {
-    const app = document.getElementById('app');
+    const loginButton = document.getElementById('login');
+    const logoutButton = document.getElementById('logout');
+    const fetchButton = document.getElementById('fetch');
+    const userInfo = document.getElementById('user-info');
+    const itemsDiv = document.getElementById('items');
+
     if (!currentUser) {
-        app.innerHTML = `<button id="login">Login</button>`;
-        document.getElementById("login").onclick = login;
+        loginButton.style.display = "block";
+        logoutButton.style.display = "none";
+        fetchButton.style.display = "none";
+        userInfo.innerText = "";
+        itemsDiv.innerHTML = "";
     } else {
-        app.innerHTML = `
-            <button id="logout">Logout</button><br>
-            Logged in as: ${currentUser.email || currentUser.sub}<br>
-            <button id="fetch">Fetch My Items</button>
-            <div id="items"></div>
-        `;
-        document.getElementById("logout").onclick = logout;
-        document.getElementById("fetch").onclick = fetchItems;
+        loginButton.style.display = "none";
+        logoutButton.style.display = "block";
+        fetchButton.style.display = "block";
+        userInfo.innerText = `Logged in as: ${currentUser.email || currentUser.sub}`;
     }
 }
+
 async function login() {
     await auth0.loginWithRedirect({
         redirect_uri: window.location.origin
@@ -78,6 +83,10 @@ async function fetchItems() {
 window.onload = async () => {
     await configureClient();
 
+    document.getElementById("login").onclick = login;
+    document.getElementById("logout").onclick = logout;
+    document.getElementById("fetch").onclick = fetchItems;
+    
     const isAuthenticated = await auth0.isAuthenticated();
 
     if (!isAuthenticated && window.location.search.includes("code=")) {

@@ -1,5 +1,101 @@
+/* Reset defaults */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box; 
+}
+
+/* Body and container */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column; /* stack vertically */
+    align-items: center;    /* center horizontally */
+    gap: 30px;              /* space between header and app */
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Header */
+#container h1 {
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    color: #222;
+}
+
+/* App box */
+#app {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* User info */
+#user-info {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+}
+
+/* Buttons */
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Items list */
+#items ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+#items li {
+    padding: 6px 0;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #app {
+        padding: 20px 15px;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
 }
