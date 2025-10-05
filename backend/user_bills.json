@@ -1,0 +1,12 @@
+{
+  "auth0|68e11a0b00dd53e204675f16": [
+    {"item": "Internet Plan", "amount": 45.99, "currency": "USD"},
+    {"item": "Mobile Subscription", "amount": 29.99, "currency": "USD"},
+    {"item": "Extra Data Package", "amount": 10.00, "currency": "USD"}
+  ],
+  "auth0|68e11abb599e76dc0d472ce8": [
+    {"item": "Electricity Bill", "amount": 75.40, "currency": "USD"},
+    {"item": "Water Bill", "amount": 20.15, "currency": "USD"},
+    {"item": "Gas Bill", "amount": 32.80, "currency": "USD"}
+  ]
+}

@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 import requests
+import json 
 
 AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
 API_AUDIENCE = os.environ.get("API_AUDIENCE")
@@ -51,6 +52,9 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         except JWTError:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
+
+with open("user_bills.json", "r") as f:
+    user_bills = json.load(f)
 
 @app.get("/")
 def read_root():
