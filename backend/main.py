@@ -56,6 +56,12 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
 with open("user_bills.json", "r") as f:
     user_bills = json.load(f)
 
-@app.get("/")
-def read_root():
-    return {"message":"Hello World"}
+@app.get("/items/{user_sub}")
+def get_items(user_sub: str, user: dict = Depends(get_current_user)):
+    auth_user_sub = user.get("sub")
+    if not auth_user_sub or user_sub != auth_user_sub:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not authorized to access these items"
+        )
+    return {"items": user_bills.get(user_sub, [])}
