@@ -89,15 +89,15 @@ window.onload = async () => {
     
     const isAuthenticated = await auth0.isAuthenticated();
 
-    if (!isAuthenticated && window.location.search.includes("code=")) {
-        try {
-            await auth0.handleRedirectCallback();
-            window.history.replaceState({}, document.title, "/");
-        } catch (e) {
-            console.error("Error handling redirect callback:", e);
-            window.history.replaceState({}, document.title, "/");
-        }
+    if (window.location.search.includes("code=") || window.location.search.includes("state=")) {
+    try {
+        await auth0.handleRedirectCallback();
+    } catch (e) {
+        console.error("Error handling redirect callback:", e);
+    } finally {
+        window.history.replaceState({}, document.title, "/");
     }
+}
 
     if (await auth0.isAuthenticated()) {
         currentUser = await auth0.getUser();
